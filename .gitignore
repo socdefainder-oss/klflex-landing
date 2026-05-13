@@ -1,0 +1,6 @@
+assets/videos
+node_modules
+design_system.html
+*.jpg
+*.png
+*.mp4

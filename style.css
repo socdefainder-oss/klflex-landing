@@ -1,0 +1,725 @@
+/* style.css - KL Flex Premium Hero Styles */
+
+:root {
+    --gold-imperial: #C88B1D;
+    --gold-medium: #B97714;
+    --gold-dark: #8D5A0A;
+    --gold-champagne: #D9A441;
+    --gold-sand: #E6C27A;
+    --gold-bronze: #5C3A09;
+    --bg-main: #FFFFFF; /* Back to white theme */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-main);
+    font-family: 'Inter', sans-serif;
+}
+
+/* ── Typography & Display ───────────────────────────── */
+.text-transparent-stroke-gold {
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1.5px var(--gold-imperial);
+    text-stroke: 1.5px var(--gold-imperial);
+}
+
+@media (max-width: 1024px) {
+    .text-transparent-stroke-gold {
+        -webkit-text-stroke: 1px var(--gold-imperial);
+        text-stroke: 1px var(--gold-imperial);
+    }
+}
+
+/* ── Gold Shimmer Button (From Design System) ───────── */
+.btn-beam-gold {
+    position: relative; overflow: hidden;
+    background: linear-gradient(135deg, var(--gold-imperial), var(--gold-dark));
+    color: white; border: none; cursor: pointer;
+    padding: 14px 32px; border-radius: 9999px;
+    font-size: 0.875rem; font-weight: 600;
+    letter-spacing: 0.04em;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: inline-flex; align-items: center; gap: 10px;
+    box-shadow: 0 4px 24px rgba(200, 139, 29, 0.3);
+}
+.btn-beam-gold:hover {
+    box-shadow: 0 8px 40px rgba(200, 139, 29, 0.5);
+    transform: translateY(-2px);
+}
+.btn-beam-gold .shimmer-layer {
+    position: absolute; inset: 0; overflow: hidden;
+    border-radius: inherit; opacity: 0;
+    transition: opacity 0.5s;
+}
+.btn-beam-gold:hover .shimmer-layer { opacity: 1; }
+.btn-beam-gold .shimmer-layer::after {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    transform: translateX(-100%) skewX(-15deg);
+}
+.btn-beam-gold:hover .shimmer-layer::after {
+    animation: shimmer 1.5s infinite;
+}
+.btn-beam-gold .conic-border {
+    position: absolute; inset: -1px;
+    border-radius: inherit; overflow: hidden;
+    opacity: 0; transition: opacity 0.5s;
+}
+.btn-beam-gold:hover .conic-border { opacity: 1; }
+.btn-beam-gold .conic-border::before {
+    content: ''; position: absolute;
+    top: 50%; left: 50%;
+    width: 300%; height: 300%;
+    transform: translate(-50%, -50%);
+    background: conic-gradient(from 0deg, transparent 0 340deg, rgba(255,255,255,0.4) 360deg);
+    animation: conicSpin 2s linear infinite;
+}
+.btn-beam-gold .btn-inner {
+    position: relative; z-index: 2;
+    display: flex; align-items: center; gap: 10px;
+}
+
+@keyframes shimmer {
+    100% { transform: translateX(100%) skewX(-15deg); }
+}
+
+@keyframes conicSpin {
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Base styles for hiding items that GSAP will control */
+.invisible {
+    visibility: hidden;
+}
+
+/* Clean Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-main);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--gold-sand);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gold-imperial);
+}
+
+/* ══════════════════════════════════════════════════════
+   SECTION 2 — CHESTERFIELD 2.5D PARALLAX
+   ══════════════════════════════════════════════════════ */
+
+/* ── Viewport & Layers ───────────────────────────────── */
+.chester-viewport {
+    cursor: crosshair;
+}
+
+.chester-layer {
+    will-change: transform;
+    transition: transform 0.15s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.chester-glow {
+    will-change: transform;
+    transition: transform 0.2s ease-out;
+}
+
+/* ── Hotspot System ──────────────────────────────────── */
+.hotspot-wrapper {
+    z-index: 35;
+    pointer-events: auto;
+}
+
+.hotspot-dot {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hotspot-core {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--gold-imperial);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 12px rgba(200, 139, 29, 0.5),
+                0 0 30px rgba(200, 139, 29, 0.2);
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hotspot-dot:hover .hotspot-core {
+    transform: scale(1.3);
+    box-shadow: 0 0 20px rgba(200, 139, 29, 0.7),
+                0 0 50px rgba(200, 139, 29, 0.3);
+}
+
+.hotspot-ping {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1.5px solid var(--gold-champagne);
+    opacity: 0;
+    animation: hotspotPing 2.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes hotspotPing {
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    100% {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+
+/* ── Hotspot Info Panels ─────────────────────────────── */
+.hotspot-panel {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) scale(0.95);
+    width: 240px;
+    padding: 14px 16px;
+    background: rgba(28, 25, 23, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(200, 139, 29, 0.25);
+    border-radius: 12px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(200, 139, 29, 0.08);
+}
+
+.hotspot-panel-left {
+    right: calc(100% + 16px);
+}
+
+.hotspot-panel-right {
+    left: calc(100% + 16px);
+}
+
+.hotspot-wrapper:hover .hotspot-panel,
+.hotspot-dot:focus + .hotspot-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) scale(1);
+}
+
+/* ── Glow Line ───────────────────────────────────────── */
+@keyframes glowLine {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(250%); }
+}
+
+/* ── Section Entrance Animations ─────────────────────── */
+.chester-text-badge,
+.chester-title,
+.chester-subtitle,
+.chester-cta,
+.chester-hint {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* ── Furniture Float (subtle idle) ───────────────────── */
+@keyframes furnitureFloat {
+    0%, 100% { transform: translateY(0px); }
+    50%      { transform: translateY(-8px); }
+}
+
+.chester-layer-sofa img,
+.chester-layer-poltrona img {
+    animation: furnitureFloat 6s ease-in-out infinite;
+    will-change: transform;
+}
+
+.chester-layer-poltrona img {
+    animation-delay: -2s;
+    animation-duration: 7s;
+}
+
+/* ── Responsive Adjustments ──────────────────────────── */
+@media (max-width: 1024px) {
+    .chester-layer-sofa {
+        width: 55% !important;
+        right: 2% !important;
+        bottom: 10% !important;
+    }
+    .chester-layer-poltrona {
+        width: 28% !important;
+        left: 2% !important;
+        bottom: 12% !important;
+    }
+    .hotspot-panel {
+        width: 200px;
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .chester-layer-sofa {
+        width: 70% !important;
+        right: 5% !important;
+        bottom: 5% !important;
+    }
+    .chester-layer-poltrona {
+        width: 40% !important;
+        left: 0% !important;
+        bottom: 3% !important;
+    }
+    .hotspot-panel {
+        display: none; /* Too small for panels, will rely on tap modal in future */
+    }
+    .chester-hint {
+        display: none !important; /* No mouse hint on touch */
+    }
+}
+
+/* ══════════════════════════════════════════════════════
+   SECTION 3 — POLTRONA RECLINÁVEL SCROLL SHOWCASE
+   ══════════════════════════════════════════════════════ */
+
+/* ── Section Header Entrance ────────────────────────── */
+.poltrona-section-header h2,
+.poltrona-section-header p,
+.poltrona-section-header > div:first-child + div > div:first-child {
+    opacity: 0;
+    transform: translateY(25px);
+}
+
+/* ── Image Stage ────────────────────────────────────── */
+.poltrona-image-stage {
+    will-change: transform;
+    transition: transform 0.1s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.poltrona-img {
+    will-change: opacity, transform, filter;
+    transition: filter 0.4s ease;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
+}
+
+/* ── Text Panels ────────────────────────────────────── */
+.poltrona-text {
+    will-change: opacity, transform;
+}
+
+/* ── Progress Dots ──────────────────────────────────── */
+.poltrona-progress {
+    opacity: 0;
+}
+
+.poltrona-progress-dot {
+    will-change: transform, opacity, background-color;
+}
+
+/* ── Ambient Glow ───────────────────────────────────── */
+.poltrona-ambient-glow {
+    will-change: opacity, transform;
+}
+
+/* ── Responsive — Section 3 ─────────────────────────── */
+@media (max-width: 1024px) {
+    .poltrona-image-stage {
+        width: 46% !important;
+    }
+    .poltrona-text {
+        width: 46% !important;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Stack: image top, text bottom */
+    .poltrona-scroll-container {
+        height: 400vh !important; /* More scroll room for mobile */
+    }
+    .poltrona-image-stage {
+        width: 75% !important;
+        left: 50% !important;
+        transform: translateX(-50%) translateY(-65%) !important;
+        top: 45% !important;
+        max-width: 320px !important;
+    }
+    .poltrona-text {
+        width: 90% !important;
+        max-width: 100% !important;
+        left: 50% !important;
+        right: auto !important;
+        transform: translateX(-50%) !important;
+        top: auto !important;
+        bottom: 8% !important;
+        text-align: center;
+    }
+    .poltrona-text-1 {
+        bottom: 12% !important; /* Give extra space for text 1 since it might be taller */
+    }
+    .poltrona-text h3 {
+        font-size: 2rem !important;
+    }
+    .poltrona-text p {
+        font-size: 0.95rem !important;
+    }
+    /* Center the decorative line for mobile */
+    .poltrona-text .flex {
+        justify-content: center;
+    }
+    /* Move progress lower */
+    .poltrona-progress {
+        bottom: 3% !important;
+    }
+}
+
+/* ══════════════════════════════════════════════════════
+   SECTION 4 — POLTRONA DE CINEMA STICKY SPLIT-SCREEN
+   ══════════════════════════════════════════════════════ */
+
+/* ── Section Header Entrance ────────────────────────── */
+.cinema-header-el {
+    opacity: 0;
+    transform: translateY(25px);
+}
+
+/* ── Vertical Glow Line (desktop separator) ─────────── */
+@keyframes glowLineVertical {
+    0%   { transform: translateY(-100%); }
+    100% { transform: translateY(250%); }
+}
+
+/* ── Sticky Panel ───────────────────────────────────── */
+.cinema-sticky-panel {
+    will-change: auto;
+}
+
+/* ── Image handling ─────────────────────────────────── */
+.cinema-img {
+    will-change: opacity, transform;
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.18));
+}
+
+.cinema-image-wrapper {
+    animation: cinemaFloat 6s ease-in-out infinite;
+}
+
+@keyframes cinemaFloat {
+    0%, 100% { transform: translateY(0px); }
+    50%      { transform: translateY(-6px); }
+}
+
+/* ── Content Blocks Entrance ────────────────────────── */
+.cinema-block {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cinema-block.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ── View Label ─────────────────────────────────────── */
+.cinema-view-label {
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+.cinema-view-label.is-visible {
+    opacity: 1;
+}
+
+/* ── Glow pulse on crossfade ────────────────────────── */
+.cinema-glow {
+    transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+.cinema-glow.is-active {
+    opacity: 1 !important;
+    transform: translate(-50%, -50%) scale(1.15);
+}
+
+/* ── Left border accent on active block ─────────────── */
+.cinema-block.is-active {
+    border-left: 3px solid var(--gold-imperial);
+    padding-left: calc(2rem - 3px);
+}
+
+@media (min-width: 1024px) {
+    .cinema-block.is-active {
+        padding-left: calc(3rem - 3px);
+    }
+}
+
+@media (min-width: 1280px) {
+    .cinema-block.is-active {
+        padding-left: calc(4rem - 3px);
+    }
+}
+
+/* ── Responsive — Section 4 ─────────────────────────── */
+@media (max-width: 1024px) {
+    .cinema-sticky-panel {
+        position: relative !important;
+        height: auto !important;
+        top: auto !important;
+    }
+
+    .cinema-image-wrapper {
+        max-width: 380px !important;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .cinema-image-wrapper {
+        max-width: 300px !important;
+    }
+
+    .cinema-block {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+        padding-top: 2.5rem !important;
+        padding-bottom: 2.5rem !important;
+    }
+
+    .cinema-block.is-active {
+        padding-left: calc(1.5rem - 3px) !important;
+    }
+
+    .cinema-view-label {
+        display: none;
+    }
+}
+
+/* ══════════════════════════════════════════════════════
+   SECTION 5 — BENTO GRID "LINHA RESIDENCIAL"
+   ══════════════════════════════════════════════════════ */
+
+/* ── Header Entrance ────────────────────────────────── */
+.bento-header-el {
+    opacity: 0;
+    transform: translateY(25px);
+}
+
+/* ── Grid Layout ────────────────────────────────────── */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+/* ── Card Base ──────────────────────────────────────── */
+.bento-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    min-height: 260px;
+    opacity: 0;
+    transform: translateY(30px) scale(0.97);
+    cursor: pointer;
+    background: #1c1917; /* stone-900 fallback */
+    border: 1px solid rgba(200, 139, 29, 0.08);
+    transition: border-color 0.5s ease;
+}
+
+.bento-card.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.bento-card:hover {
+    border-color: rgba(200, 139, 29, 0.25);
+}
+
+/* ── Card Hero sizing ───────────────────────────────── */
+.bento-card-hero {
+    min-height: 460px;
+}
+
+/* ── Card Image ─────────────────────────────────────── */
+.bento-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.6s ease;
+    will-change: transform;
+}
+
+.bento-card:hover .bento-card-img {
+    transform: scale(1.05);
+}
+
+/* ── Overlay (glassmorphic reveal) ──────────────────── */
+.bento-card-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px 22px;
+    background: linear-gradient(
+        180deg,
+        transparent 30%,
+        rgba(12, 10, 9, 0.45) 60%,
+        rgba(12, 10, 9, 0.85) 100%
+    );
+    opacity: 0.85;
+    transition: opacity 0.5s ease;
+    z-index: 5;
+}
+
+.bento-card:hover .bento-card-overlay {
+    opacity: 1;
+}
+
+.bento-overlay-bottom {
+    justify-content: flex-end;
+}
+
+/* ── Card Badge ─────────────────────────────────────── */
+.bento-card-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border: 1px solid rgba(200, 139, 29, 0.25);
+    border-radius: 100px;
+    font-size: 10px;
+    font-family: 'Inter', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(200, 139, 29, 0.8);
+    background: rgba(200, 139, 29, 0.06);
+    backdrop-filter: blur(8px);
+    width: fit-content;
+    margin-bottom: 10px;
+}
+
+/* ── Card Titles ────────────────────────────────────── */
+.bento-card-title {
+    font-size: clamp(1.4rem, 2vw, 1.8rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: #fff;
+    margin-bottom: 6px;
+}
+
+.bento-card-title-sm {
+    font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: #fff;
+}
+
+/* ── Card Description ───────────────────────────────── */
+.bento-card-desc {
+    font-size: 0.8rem;
+    color: rgba(214, 211, 209, 0.7); /* stone-300/70 */
+    line-height: 1.5;
+    max-width: 400px;
+}
+
+/* ── Text-only Card ─────────────────────────────────── */
+.bento-card-text {
+    background: transparent;
+    border-color: rgba(200, 139, 29, 0.12);
+}
+
+/* ── CTA ────────────────────────────────────────────── */
+.bento-cta {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.bento-cta.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ── Responsive — Bento Grid ────────────────────────── */
+
+/* Tablet: 2-column layout */
+@media (max-width: 1024px) {
+    .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    /* Hero: full width, single row */
+    .bento-card-hero {
+        grid-column: span 2 !important;
+        grid-row: span 1 !important;
+        min-height: 340px;
+    }
+
+    /* Stats card: full width */
+    .bento-card-text {
+        grid-column: span 2 !important;
+    }
+
+    /* All other multi-column cards → 2-col */
+    .bento-card[style*="span 3"],
+    .bento-card[style*="span 2"] {
+        grid-column: span 2 !important;
+        grid-row: span 1 !important;
+    }
+
+    /* Single col cards stay single */
+    .bento-card[style*="span 1"] {
+        grid-column: span 1 !important;
+    }
+}
+
+/* Mobile: single column */
+@media (max-width: 640px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .bento-card,
+    .bento-card-hero,
+    .bento-card-text {
+        grid-column: span 1 !important;
+        grid-row: span 1 !important;
+        min-height: 220px;
+    }
+
+    .bento-card-hero {
+        min-height: 280px;
+    }
+
+    .bento-card {
+        border-radius: 12px;
+    }
+
+    .bento-card-overlay {
+        padding: 16px;
+        opacity: 1; /* always show on mobile */
+    }
+}

@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="KLFLEX — Tecnologia do Sono. Colchões e poltronas com tecnologia magnética, infravermelho longo e massagem Doin para curar insônia e dores no corpo.">
+    <title>KLFLEX | Tecnologia do Sono</title>
+
+    <!-- Preconnect (faster font loading) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS (built & minified — no more CDN) -->
+    <link href="tailwind-built.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="style.css" rel="stylesheet">
+
+    <!-- Iconify (deferred — doesn't block page render) -->
+    <script defer src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+</head>
+<body class="antialiased bg-white text-stone-900 selection:bg-gold-imperial selection:text-white overflow-x-hidden">
+
+    <!-- Preloader -->
+    <div id="klflex-preloader" class="fixed inset-0 z-[9999] bg-stone-950 flex flex-col items-center justify-center overflow-hidden transition-all duration-1000">
+        <!-- Subtle pulsing gradient -->
+        <div class="absolute inset-0 bg-gold-imperial/5 animate-pulse"></div>
+        <!-- Removed invalid texture overlay -->
+        
+        <div class="relative z-10 flex flex-col items-center text-center px-6 max-w-3xl">
+            <!-- Logo -->
+            <img id="pl-logo" src="assets/images/LogoKLFlex.webp" alt="KLFLEX Logo" class="h-16 w-auto mb-8 opacity-0">
+
+            <!-- Top Label -->
+            <span id="pl-label" class="text-gold-imperial font-semibold tracking-widest uppercase text-[10px] sm:text-xs mb-6 opacity-0">Tecnologia KL Flex</span>
+            
+            <!-- Main Hook -->
+            <h2 id="pl-hook" class="text-3xl sm:text-4xl md:text-5xl font-light text-white leading-tight mb-10 opacity-0">
+                Preparando a tecnologia que vai <br class="hidden sm:block"/>
+                <span class="text-transparent-stroke-gold font-bold">curar sua insônia</span><br class="hidden sm:block"/>
+                e acabar com as dores no corpo.
+            </h2>
+            
+            <!-- Loading Bar -->
+            <div id="pl-bar-bg" class="w-full max-w-[200px] sm:max-w-xs h-[1px] bg-stone-800 overflow-hidden mt-4 opacity-0">
+                <div id="pl-bar-fill" class="h-full bg-gradient-to-r from-gold-medium to-gold-imperial w-0 shadow-[0_0_10px_rgba(200,139,29,0.5)]"></div>
+            </div>
+            
+            <p id="pl-percentage" class="text-stone-500 font-mono text-[10px] tracking-widest mt-4 opacity-0">0%</p>
+        </div>
+    </div>
+
+    <!-- Header / Nav -->
+    <header class="fixed top-0 w-full z-50 backdrop-blur-md bg-white/80 border-b border-stone-200 px-6 py-4 flex justify-between items-center hero-nav">
+        <a href="#hero-sequence" class="flex items-center gap-4 relative w-40 h-12">
+            <img src="assets/images/LogoKLFlex.webp" alt="KLFLEX Logo" class="h-[110px] w-auto absolute top-1/2 -translate-y-1/2 left-0 object-contain origin-left hover:opacity-80 transition-opacity">
+        </a>
+        <div class="hidden lg:flex gap-8">
+            <a href="#chesterfield-showcase" class="text-[11px] font-semibold tracking-widest uppercase text-stone-700 hover:text-gold-imperial transition-colors">Sofá</a>
+            <a href="#poltrona-showcase" class="text-[11px] font-semibold tracking-widest uppercase text-stone-700 hover:text-gold-imperial transition-colors">Poltrona</a>
+            <a href="#cinema-showcase" class="text-[11px] font-semibold tracking-widest uppercase text-stone-700 hover:text-gold-imperial transition-colors">Cinema</a>
+            <a href="#bento-residencial" class="text-[11px] font-semibold tracking-widest uppercase text-stone-700 hover:text-gold-imperial transition-colors">Linha Residencial</a>
+            <a href="#contato" class="text-[11px] font-semibold tracking-widest uppercase text-stone-700 hover:text-gold-imperial transition-colors">Contatos</a>
+        </div>
+        <a href="https://wa.me/5511916164450" target="_blank" class="px-6 py-2 text-white rounded-md text-sm font-medium hover:opacity-90 transition-all bg-gold-imperial flex items-center gap-2">
+            Consultor Online
+            <iconify-icon icon="solar:chat-round-dots-linear"></iconify-icon>
+        </a>
+    </header>
+
+    <!-- Scroll Sequence Section -->
+    <section id="hero-sequence" class="relative w-full bg-white h-[1000vh]">
+        
+        <!-- Pinned Background -->
+        <div class="sticky top-0 w-full h-[100dvh] overflow-hidden">
+            <!-- Canvas Sequence -->
+            <canvas id="hero-canvas" class="w-full h-full object-cover"></canvas>
+            
+            <!-- Subtle gradient overlay for text readability -->
+            <div class="absolute inset-0 pointer-events-none" id="canvas-overlay"
+                 style="background: linear-gradient(90deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.3) 40%, transparent 65%);"></div>
+            
+            <!-- Content Panels -->
+            <div class="absolute inset-0 flex flex-col justify-center px-6 lg:px-16 xl:px-24">
+                
+                <!-- 0. Main Intro -->
+                <div class="step-panel step-intro absolute w-full max-w-2xl left-6 lg:left-16 xl:left-24 top-1/2 -translate-y-1/2 opacity-0">
+                    <div class="hero-badge inline-flex items-center gap-2 px-3 py-1 border border-gold-imperial/40 rounded-full text-[10px] sm:text-xs font-mono uppercase text-gold-dark mb-6 backdrop-blur-sm bg-white/60">
+                        <iconify-icon icon="solar:magic-stick-3-linear" class="text-gold-imperial"></iconify-icon>
+                        Tecnologia Reparadora Oficial
+                    </div>
+                    
+                    <h1 class="hero-headline flex flex-col text-[clamp(2.5rem,4vw,4.5rem)] font-semibold tracking-tighter leading-[1.05] mb-6">
+                        <span class="text-stone-900 line-1 block">Durma melhor,</span>
+                        <span class="text-transparent-stroke-gold block py-1 line-2">acorde mais</span>
+                        <span class="text-gold-imperial line-3 block">forte.</span>
+                    </h1>
+                    
+                    <p class="hero-text text-[clamp(1rem,1.2vw,1.125rem)] text-stone-600 leading-relaxed font-medium">
+                        Tecnologia inteligente para o descanso que seu corpo merece. Melhore o sono, a postura e a qualidade de vida com a linha KLFLEX.
+                    </p>
+                </div>
+
+                <!-- 1. Aloe Vera -->
+                <div class="step-panel absolute w-full max-w-xl left-6 lg:left-16 xl:left-24 top-1/2 -translate-y-1/2 opacity-0 invisible">
+                    <div class="hero-badge inline-flex items-center gap-2 px-3 py-1 border border-gold-imperial/40 rounded-full text-[10px] sm:text-xs font-mono uppercase text-gold-dark mb-6 backdrop-blur-sm bg-white/60">
+                        <iconify-icon icon="solar:leaf-linear" class="text-gold-imperial"></iconify-icon>
+                        01 / Benefícios
+                    </div>
+                    
+                    <h2 class="hero-headline flex flex-col text-[clamp(2.5rem,4vw,4.5rem)] font-semibold tracking-tighter leading-[1.05] mb-6">
+                        <span class="text-stone-900 line-1 block">Tecido</span>
+                        <span class="text-transparent-stroke-gold block py-1 line-2">Aloe</span>
+                        <span class="text-gold-imperial line-3 block">Vera</span>
+                    </h2>
+                    
+                    <p class="hero-text text-[clamp(1rem,1.2vw,1.125rem)] text-stone-600 leading-relaxed font-medium">
+                        Bordado personalizado e matelado com toque suave, ajudando na hidratação da pele durante o descanso.
+                    </p>
+                </div>
+
+                <!-- 2. Rabatan -->
+                <div class="step-panel absolute w-full max-w-xl left-6 lg:left-16 xl:left-24 top-1/2 -translate-y-1/2 opacity-0 invisible">
+                    <div class="hero-badge inline-flex items-center gap-2 px-3 py-1 border border-gold-imperial/40 rounded-full text-[10px] sm:text-xs font-mono uppercase text-gold-dark mb-6 backdrop-blur-sm bg-white/60">
+                        <iconify-icon icon="solar:layers-minimalistic-linear" class="text-gold-imperial"></iconify-icon>
+                        02 / Benefícios
+                    </div>
+                    
+                    <h2 class="hero-headline flex flex-col text-[clamp(2.5rem,4vw,4.5rem)] font-semibold tracking-tighter leading-[1.05] mb-6">
+                        <span class="text-stone-900 line-1 block">Rabatan</span>
+                        <span class="text-transparent-stroke-gold block py-1 line-2">Hi-Tech</span>
+                        <span class="text-gold-imperial line-3 block">+ Látex</span>
+                    </h2>
+                    
+                    <p class="hero-text text-[clamp(1rem,1.2vw,1.125rem)] text-stone-600 leading-relaxed font-medium">
+                        Perfilado em espuma selada com revestimento total látex: conforto com ação antifúngica natural e menor umidade.
+                    </p>
+                </div>
+
+                <!-- 3. Pastilhas Magnéticas -->
+                <div class="step-panel absolute w-full max-w-xl left-6 lg:left-16 xl:left-24 top-1/2 -translate-y-1/2 opacity-0 invisible">
+                    <div class="hero-badge inline-flex items-center gap-2 px-3 py-1 border border-gold-imperial/40 rounded-full text-[10px] sm:text-xs font-mono uppercase text-gold-dark mb-6 backdrop-blur-sm bg-white/60">
+                        <iconify-icon icon="solar:magnet-linear" class="text-gold-imperial"></iconify-icon>
+                        03 / Benefícios
+                    </div>
+                    
+                    <h2 class="hero-headline flex flex-col text-[clamp(2.5rem,4vw,4.5rem)] font-semibold tracking-tighter leading-[1.05] mb-6">
+                        <span class="text-stone-900 line-1 block">Pastilhas</span>
+                        <span class="text-transparent-stroke-gold block py-1 line-2">Magnéticas</span>
+                    </h2>
+                    
+                    <p class="hero-text text-[clamp(1rem,1.2vw,1.125rem)] text-stone-600 leading-relaxed font-medium">
+                        Pastilhas de ferrite de bário (aprox. 800 gauss) que apoiam circulação e oxigenação para melhor recuperação física.
+                    </p>
+                </div>
+
+                <!-- 4. Infravermelho -->
+                <div class="step-panel absolute w-full max-w-xl left-6 lg:left-16 xl:left-24 top-1/2 -translate-y-1/2 opacity-0 invisible">
+                    <div class="hero-badge inline-flex items-center gap-2 px-3 py-1 border border-gold-imperial/40 rounded-full text-[10px] sm:text-xs font-mono uppercase text-gold-dark mb-6 backdrop-blur-sm bg-white/60">
+                        <iconify-icon icon="solar:sun-linear" class="text-gold-imperial"></iconify-icon>
+                        04 / Benefícios
+                    </div>
+                    
+                    <h2 class="hero-headline flex flex-col text-[clamp(2.5rem,4vw,4.5rem)] font-semibold tracking-tighter leading-[1.05] mb-6">
+                        <span class="text-stone-900 line-1 block">Infravermelho</span>
+                        <span class="text-transparent-stroke-gold block py-1 line-2">Longo</span>
+                        <span class="text-gold-imperial line-3 block">Bio-Cerâmica</span>
+                    </h2>
+                    
+                    <p class="hero-text text-[clamp(1rem,1.2vw,1.125rem)] text-stone-600 leading-relaxed font-medium">
+                        Emissão de ondas de 4 a 16 microns para suporte ao metabolismo, alívio de tensões e sensação de desintoxicação.
+                    </p>
+                </div>
+
+                <!-- 5. Turmalina -->
+                <div class="step-panel absolute w-full max-w-xl left-6 lg:left-16 xl:left-24 top-1/2 -translate-y-1/2 opacity-0 invisible">
+                    <div class="hero-badge inline-flex items-center gap-2 px-3 py-1 border border-gold-imperial/40 rounded-full text-[10px] sm:text-xs font-mono uppercase text-gold-dark mb-6 backdrop-blur-sm bg-white/60">
+                        <iconify-icon icon="solar:shield-star-linear" class="text-gold-imperial"></iconify-icon>
+                        05 / Benefícios
+                    </div>
+                    
+                    <h2 class="hero-headline flex flex-col text-[clamp(2.5rem,4vw,4.5rem)] font-semibold tracking-tighter leading-[1.05] mb-6">
+                        <span class="text-stone-900 line-1 block">Turmalina</span>
+                        <span class="text-transparent-stroke-gold block py-1 line-2">Negra</span>
+                        <span class="text-gold-imperial line-3 block">+ Íons Negativos</span>
+                    </h2>
+                    
+                    <p class="hero-text text-[clamp(1rem,1.2vw,1.125rem)] text-stone-600 leading-relaxed font-medium">
+                        Minerais naturais que favorecem relaxamento, respiração e bem-estar, com sensação de calma corporal.
+                    </p>
+                </div>
+
+                <!-- 6. Densidade Progressiva -->
+                <div class="step-panel absolute w-full max-w-xl left-6 lg:left-16 xl:left-24 top-1/2 -translate-y-1/2 opacity-0 invisible">
+                    <div class="hero-badge inline-flex items-center gap-2 px-3 py-1 border border-gold-imperial/40 rounded-full text-[10px] sm:text-xs font-mono uppercase text-gold-dark mb-6 backdrop-blur-sm bg-white/60">
+                        <iconify-icon icon="solar:ruler-linear" class="text-gold-imperial"></iconify-icon>
+                        06 / Benefícios
+                    </div>
+                    
+                    <h2 class="hero-headline flex flex-col text-[clamp(2.5rem,4vw,4.5rem)] font-semibold tracking-tighter leading-[1.05] mb-6">
+                        <span class="text-stone-900 line-1 block">Densidade</span>
+                        <span class="text-transparent-stroke-gold block py-1 line-2">Progressiva</span>
+                        <span class="text-gold-imperial line-3 block">Inteligente</span>
+                    </h2>
+                    
+                    <p class="hero-text text-[clamp(1rem,1.2vw,1.125rem)] text-stone-600 leading-relaxed font-medium">
+                        Camadas para vários biotipos (0 a 300 kg), espumas seladas de alta resistência e suporte postural de longa duração.
+                    </p>
+                </div>
+
+                <!-- 7. Vibromassageador -->
+                <div class="step-panel absolute w-full max-w-xl left-6 lg:left-16 xl:left-24 top-1/2 -translate-y-1/2 opacity-0 invisible">
+                    <div class="hero-badge inline-flex items-center gap-2 px-3 py-1 border border-gold-imperial/40 rounded-full text-[10px] sm:text-xs font-mono uppercase text-gold-dark mb-6 backdrop-blur-sm bg-white/60">
+                        <iconify-icon icon="solar:pulse-linear" class="text-gold-imperial"></iconify-icon>
+                        07 / Benefícios
+                    </div>
+                    
+                    <h2 class="hero-headline flex flex-col text-[clamp(2.5rem,4vw,4.5rem)] font-semibold tracking-tighter leading-[1.05] mb-6">
+                        <span class="text-stone-900 line-1 block">Vibromassageador</span>
+                        <span class="text-transparent-stroke-gold block py-1 line-2">+ Energia</span>
+                        <span class="text-gold-imperial line-3 block">Quântica</span>
+                    </h2>
+                    
+                    <p class="hero-text text-[clamp(1rem,1.2vw,1.125rem)] text-stone-600 leading-relaxed font-medium">
+                        Massagem terapêutica por motores com controle remoto/app e pulsação de 52 Hz para relaxamento e qualidade do sono.
+                    </p>
+                </div>
+
+                <!-- 8. Cromoterapia -->
+                <div class="step-panel absolute w-full max-w-xl left-6 lg:left-16 xl:left-24 top-1/2 -translate-y-1/2 opacity-0 invisible">
+                    <div class="hero-badge inline-flex items-center gap-2 px-3 py-1 border border-gold-imperial/40 rounded-full text-[10px] sm:text-xs font-mono uppercase text-gold-dark mb-6 backdrop-blur-sm bg-white/60">
+                        <iconify-icon icon="solar:palette-linear" class="text-gold-imperial"></iconify-icon>
+                        08 / Benefícios
+                    </div>
+                    
+                    <h2 class="hero-headline flex flex-col text-[clamp(2.5rem,4vw,4.5rem)] font-semibold tracking-tighter leading-[1.05] mb-6">
+                        <span class="text-stone-900 line-1 block">Cromoterapia</span>
+                        <span class="text-transparent-stroke-gold block py-1 line-2">+ Áudio</span>
+                        <span class="text-gold-imperial line-3 block">Bluetooth</span>
+                    </h2>
+                    
+                    <p class="hero-text text-[clamp(1rem,1.2vw,1.125rem)] text-stone-600 leading-relaxed font-medium">
+                        Luzes terapêuticas e sistema de áudio integrado para criar uma experiência completa de repouso e recuperação.
+                    </p>
+                    
+                    <a href="https://wa.me/5511916164450" target="_blank" class="btn-beam-gold mt-8">
+                        <span class="conic-border"></span>
+                        <span class="shimmer-layer"></span>
+                        <span class="btn-inner">
+                            Adquirir a Tecnologia
+                            <iconify-icon class="text-lg" icon="solar:cart-large-minimalistic-linear"></iconify-icon>
+                        </span>
+                    </a>
+                </div>
+
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="hero-scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-3">
+                <div class="w-[1px] h-16 bg-gradient-to-b from-gold-imperial to-transparent mt-2 animate-pulse"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ SECTION 2 — LINHA CHESTERFIELD 2.5D PARALLAX ═══ -->
+    <section id="chesterfield-showcase" class="relative z-20 bg-stone-900 overflow-hidden">
+
+        <!-- ── Scroll-Pinned Viewport ── -->
+        <div class="chester-viewport relative w-full h-[100dvh] overflow-hidden">
+
+            <!-- LAYER 0 — Ambient Room (Deepest / Slowest) -->
+            <div class="chester-layer chester-layer-bg absolute inset-0 z-0" data-depth="0.02">
+                <img src="assets/images/5-Section/sala_chesterfield.webp"
+                     alt="Ambiente Chesterfield"
+                     class="w-full h-full object-cover scale-110 blur-[2px] opacity-40"
+                     loading="lazy" decoding="async">
+                <!-- Dark Vignette over room -->
+                <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/60 to-stone-900/30"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-stone-900/70 via-transparent to-stone-900/70"></div>
+            </div>
+
+            <!-- Gold Glow Orb (behind furniture) -->
+            <div class="chester-glow absolute z-[1] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
+                 style="background: radial-gradient(circle, rgba(200,139,29,0.12) 0%, rgba(200,139,29,0.04) 40%, transparent 70%);
+                        filter: blur(80px);">
+            </div>
+
+            <!-- Dot grid decoration -->
+            <div class="absolute inset-0 z-[1] pointer-events-none opacity-[0.03]"
+                 style="background-image: radial-gradient(circle, #E6C27A 1px, transparent 1px); background-size: 32px 32px;"></div>
+
+            <!-- LAYER 1 — Sofá (Mid-depth) -->
+            <div class="chester-layer chester-layer-sofa absolute z-10" data-depth="0.05"
+                 style="bottom: 5%; right: 8%; width: 52%; max-width: 750px;">
+                <img src="assets/images/2-Section/sofa_chesterfield_transparente.webp"
+                     alt="Sofá Chesterfield Tecnológico"
+                     class="w-full h-auto drop-shadow-[0_30px_60px_rgba(0,0,0,0.5)]"
+                     id="sofa-main" loading="lazy" decoding="async">
+                <!-- Sofa Gold Reflection -->
+                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[80%] h-[2px] rounded-full"
+                     style="background: linear-gradient(90deg, transparent, var(--gold-imperial), transparent); opacity: 0.4;"></div>
+                
+                <!-- ── HOTSPOTS on Sofa ── -->
+                <!-- Hotspot: Density -->
+                <div class="hotspot-wrapper absolute" style="top: 65%; left: 30%;">
+                    <button class="hotspot-dot" data-hotspot="density" aria-label="Densidade Progressiva">
+                        <span class="hotspot-ping"></span>
+                        <span class="hotspot-core"></span>
+                    </button>
+                    <div class="hotspot-panel hotspot-panel-left">
+                        <div class="flex items-center gap-2 mb-2">
+                            <iconify-icon icon="solar:ruler-linear" class="text-gold-imperial text-base"></iconify-icon>
+                            <span class="text-xs font-mono uppercase tracking-widest text-gold-imperial font-semibold">Densidade Progressiva</span>
+                        </div>
+                        <p class="text-xs text-stone-300 leading-relaxed">Camadas inteligentes para biotipos de 0 a 300 kg com suporte postural de longa duração.</p>
+                    </div>
+                </div>
+                <!-- Hotspot: Vibromassage -->
+                <div class="hotspot-wrapper absolute" style="top: 40%; left: 65%;">
+                    <button class="hotspot-dot" data-hotspot="vibro" aria-label="Vibromassageador">
+                        <span class="hotspot-ping"></span>
+                        <span class="hotspot-core"></span>
+                    </button>
+                    <div class="hotspot-panel hotspot-panel-right">
+                        <div class="flex items-center gap-2 mb-2">
+                            <iconify-icon icon="solar:pulse-linear" class="text-gold-imperial text-base"></iconify-icon>
+                            <span class="text-xs font-mono uppercase tracking-widest text-gold-imperial font-semibold">Vibromassageador</span>
+                        </div>
+                        <p class="text-xs text-stone-300 leading-relaxed">Motores com controle remoto/app e pulsação de 52 Hz para relaxamento profundo.</p>
+                    </div>
+                </div>
+                <!-- Hotspot: Bluetooth -->
+                <div class="hotspot-wrapper absolute" style="top: 25%; left: 85%;">
+                    <button class="hotspot-dot" data-hotspot="bluetooth" aria-label="Áudio Bluetooth">
+                        <span class="hotspot-ping"></span>
+                        <span class="hotspot-core"></span>
+                    </button>
+                    <div class="hotspot-panel hotspot-panel-right">
+                        <div class="flex items-center gap-2 mb-2">
+                            <iconify-icon icon="solar:palette-linear" class="text-gold-imperial text-base"></iconify-icon>
+                            <span class="text-xs font-mono uppercase tracking-widest text-gold-imperial font-semibold">Cromoterapia + Bluetooth</span>
+                        </div>
+                        <p class="text-xs text-stone-300 leading-relaxed">Luzes terapêuticas e sistema de áudio integrado para recuperação completa.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LAYER 2 — Poltrona (Closest / Fastest) -->
+            <div class="chester-layer chester-layer-poltrona absolute z-20" data-depth="0.09"
+                 style="bottom: 8%; left: 4%; width: 30%; max-width: 400px;">
+                <img src="assets/images/2-Section/poltrona_chesterfield_transparente.webp"
+                     alt="Poltrona Chesterfield Tecnológica"
+                     class="w-full h-auto drop-shadow-[0_25px_50px_rgba(0,0,0,0.5)]"
+                     id="poltrona-main" loading="lazy" decoding="async">
+                <!-- Poltrona Gold Reflection -->
+                <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 w-[70%] h-[2px] rounded-full"
+                     style="background: linear-gradient(90deg, transparent, var(--gold-champagne), transparent); opacity: 0.3;"></div>
+
+                <!-- ── HOTSPOTS on Poltrona ── -->
+                <!-- Hotspot: Magnético -->
+                <div class="hotspot-wrapper absolute" style="top: 50%; left: 50%;">
+                    <button class="hotspot-dot" data-hotspot="magnetico" aria-label="Pastilhas Magnéticas">
+                        <span class="hotspot-ping"></span>
+                        <span class="hotspot-core"></span>
+                    </button>
+                    <div class="hotspot-panel hotspot-panel-left">
+                        <div class="flex items-center gap-2 mb-2">
+                            <iconify-icon icon="solar:magnet-linear" class="text-gold-imperial text-base"></iconify-icon>
+                            <span class="text-xs font-mono uppercase tracking-widest text-gold-imperial font-semibold">Pastilhas Magnéticas</span>
+                        </div>
+                        <p class="text-xs text-stone-300 leading-relaxed">800 gauss de ferrite de bário para circulação e oxigenação otimizadas.</p>
+                    </div>
+                </div>
+                <!-- Hotspot: Infravermelho -->
+                <div class="hotspot-wrapper absolute" style="top: 30%; left: 25%;">
+                    <button class="hotspot-dot" data-hotspot="infravermelho" aria-label="Infravermelho Longo">
+                        <span class="hotspot-ping"></span>
+                        <span class="hotspot-core"></span>
+                    </button>
+                    <div class="hotspot-panel hotspot-panel-right">
+                        <div class="flex items-center gap-2 mb-2">
+                            <iconify-icon icon="solar:sun-linear" class="text-gold-imperial text-base"></iconify-icon>
+                            <span class="text-xs font-mono uppercase tracking-widest text-gold-imperial font-semibold">Infravermelho Longo</span>
+                        </div>
+                        <p class="text-xs text-stone-300 leading-relaxed">Ondas de 4 a 16 microns: metabolismo, alívio de tensões e desintoxicação.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LAYER 3 — Content Overlay (Text — Fixed) -->
+            <div class="absolute inset-0 z-30 pointer-events-none">
+                <div class="relative w-full h-full flex flex-col justify-center px-6 lg:px-16 xl:px-24">
+
+                    <!-- Header Badge -->
+                    <div class="chester-text-badge inline-flex items-center gap-2 px-3 py-1 border border-gold-imperial/40 rounded-full text-[10px] sm:text-xs font-mono uppercase text-gold-champagne mb-6 backdrop-blur-sm bg-white/5 w-fit pointer-events-auto">
+                        <iconify-icon icon="solar:sofa-2-linear" class="text-gold-imperial"></iconify-icon>
+                        Linha Sofá Tecnológico
+                    </div>
+
+                    <!-- Main Headline -->
+                    <h2 class="chester-title text-[clamp(2.5rem,5vw,5rem)] font-semibold tracking-tighter leading-[1.05] mb-4">
+                        <span class="text-white block">Chesterfield</span>
+                        <span class="text-transparent-stroke-gold block py-1">Tecnológico</span>
+                    </h2>
+
+                    <!-- Subtext -->
+                    <p class="chester-subtitle text-[clamp(0.9rem,1.2vw,1.125rem)] text-stone-400 leading-relaxed font-medium max-w-lg mb-8">
+                        O clássico atemporal, agora com 8 tecnologias integradas.
+                        Explore os pontos luminosos para descobrir cada inovação.
+                    </p>
+
+                    <!-- CTA -->
+                    <div class="pointer-events-auto">
+                        <a href="https://wa.me/5511916164450" target="_blank" class="btn-beam-gold chester-cta">
+                            <span class="conic-border"></span>
+                            <span class="shimmer-layer"></span>
+                            <span class="btn-inner">
+                                Ver Coleção Completa
+                                <iconify-icon class="text-lg" icon="solar:arrow-right-linear"></iconify-icon>
+                            </span>
+                        </a>
+                    </div>
+
+                    <!-- Instruction hint -->
+                    <p class="chester-hint text-[10px] font-mono uppercase tracking-widest text-stone-600 mt-6 flex items-center gap-2">
+                        <iconify-icon icon="solar:cursor-linear" class="text-gold-sand text-sm"></iconify-icon>
+                        Mova o mouse para sentir a profundidade
+                    </p>
+                </div>
+            </div>
+
+            <!-- Gold glow line at bottom -->
+            <div class="absolute bottom-0 left-0 w-full h-[1px] z-40 overflow-hidden">
+                <div class="w-[40%] h-full absolute top-0 left-0"
+                     style="background: linear-gradient(90deg, transparent, var(--gold-imperial), transparent);
+                            animation: glowLine 4s ease-in-out infinite;">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ═══ SECTION 3 — POLTRONA RECLINÁVEL SCROLL SHOWCASE ═══ -->
+    <section id="poltrona-showcase" class="relative z-20 bg-white">
+
+        <!-- Section Header -->
+        <div class="poltrona-section-header relative w-full py-20 lg:py-28 overflow-hidden border-t border-stone-200">
+            <div class="absolute inset-0 pointer-events-none opacity-[0.03]"
+                 style="background-image: radial-gradient(circle, #C88B1D 1px, transparent 1px); background-size: 32px 32px;"></div>
+            <div class="relative z-10 text-center px-6">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 border border-gold-imperial/30 rounded-full text-[10px] sm:text-xs font-mono uppercase text-gold-dark mb-6 backdrop-blur-sm bg-white/60">
+                    <iconify-icon icon="solar:armchair-2-linear" class="text-gold-imperial"></iconify-icon>
+                    Linha Poltrona Tecnológica
+                </div>
+                <h2 class="text-[clamp(2.5rem,5vw,4.5rem)] font-semibold tracking-tighter leading-[1.05]">
+                    <span class="text-stone-900 block">Poltrona</span>
+                    <span class="text-transparent-stroke-gold block py-1">Reclinável</span>
+                </h2>
+                <p class="text-stone-500 text-base max-w-md mx-auto mt-4 leading-relaxed">
+                    Explore cada posição e descubra a tecnologia por trás do conforto.
+                </p>
+            </div>
+        </div>
+
+        <!-- Scroll Container (3x viewport = 3 stages) -->
+        <div class="poltrona-scroll-container relative" style="height: 300vh;">
+
+            <!-- Pinned Viewport -->
+            <div class="poltrona-sticky sticky top-0 w-full h-[100dvh] overflow-hidden">
+
+                <!-- Subtle BG -->
+                <div class="absolute inset-0 bg-gradient-to-b from-white via-stone-50/50 to-white pointer-events-none"></div>
+
+                <!-- Gold ambient glow -->
+                <div class="poltrona-ambient-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none opacity-0"
+                     style="background: radial-gradient(circle, rgba(200,139,29,0.08) 0%, rgba(200,139,29,0.02) 50%, transparent 70%); filter: blur(60px);"></div>
+
+                <!-- ── Image Stage ── -->
+                <div class="poltrona-image-stage absolute top-1/2 -translate-y-1/2 w-[40%] max-w-[520px] z-10"
+                     style="left: 8%;">
+
+                    <!-- Image 1 — Frontal -->
+                    <img src="assets/images/3-Section/poltronaReclinavel_1.webp"
+                         alt="Poltrona Reclinável Frontal"
+                         class="poltrona-img poltrona-img-1 w-full h-auto absolute top-0 left-0"
+                         style="opacity: 1;" loading="lazy" decoding="async">
+
+                    <!-- Image 2 — 45° -->
+                    <img src="assets/images/3-Section/poltronaReclinavel_2.webp"
+                         alt="Poltrona Reclinável 45°"
+                         class="poltrona-img poltrona-img-2 w-full h-auto absolute top-0 left-0"
+                         style="opacity: 0;" loading="lazy" decoding="async">
+
+                    <!-- Image 3 — Aberta 45° -->
+                    <img src="assets/images/3-Section/poltronaReclinavel_3.webp"
+                         alt="Poltrona Reclinável Aberta"
+                         class="poltrona-img poltrona-img-3 w-full h-auto absolute top-0 left-0"
+                         style="opacity: 0;" loading="lazy" decoding="async">
+
+                    <!-- Spacer to hold layout height -->
+                    <img src="assets/images/3-Section/poltronaReclinavel_1.webp"
+                         alt="" class="w-full h-auto invisible" aria-hidden="true">
+
+                    <!-- Gold reflection line -->
+                    <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[70%] h-[2px] rounded-full opacity-0 poltrona-reflection"
+                         style="background: linear-gradient(90deg, transparent, var(--gold-imperial), transparent);"></div>
+                </div>
+
+                <!-- ── Text Stages ── -->
+
+                <!-- Stage 1 Text — Right Side -->
+                <div class="poltrona-text poltrona-text-1 absolute top-1/2 -translate-y-1/2 right-[8%] w-[40%] max-w-[500px] z-20"
+                     style="opacity: 0;">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 border border-gold-imperial/30 rounded-full text-[10px] sm:text-xs font-mono uppercase text-gold-dark mb-5 backdrop-blur-sm bg-white/60">
+                        <iconify-icon icon="solar:sofa-2-linear" class="text-gold-imperial"></iconify-icon>
+                        01 / Conforto
+                    </div>
+                    <h3 class="text-[clamp(1.8rem,3vw,2.8rem)] font-semibold tracking-tighter leading-[1.1] mb-4">
+                        <span class="text-stone-900 block">Conforto</span>
+                        <span class="text-transparent-stroke-gold block py-0.5">Ergonômico</span>
+                    </h3>
+                    <p class="text-stone-600 text-[clamp(0.875rem,1.1vw,1rem)] leading-relaxed">
+                        Poltrona reclinável em couro marrom com design robusto e encosto alto, oferecendo conforto ergonômico. Possui um porta-copos integrado no braço direito e um bolso lateral para armazenamento de objetos, ideal para momentos de relaxamento com tecnologia integrada.
+                    </p>
+                    <div class="mt-6 flex items-center gap-3">
+                        <div class="w-8 h-[1px] bg-gold-sand"></div>
+                        <span class="text-[10px] font-mono uppercase tracking-widest text-gold-imperial">Role para explorar</span>
+                    </div>
+                </div>
+
+                <!-- Stage 2 Text — Left Side -->
+                <div class="poltrona-text poltrona-text-2 absolute top-1/2 -translate-y-1/2 left-[8%] w-[40%] max-w-[500px] z-20"
+                     style="opacity: 0;">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 border border-gold-imperial/30 rounded-full text-[10px] sm:text-xs font-mono uppercase text-gold-dark mb-5 backdrop-blur-sm bg-white/60">
+                        <iconify-icon icon="solar:pulse-linear" class="text-gold-imperial"></iconify-icon>
+                        02 / Tecnologia
+                    </div>
+                    <h3 class="text-[clamp(1.8rem,3vw,2.8rem)] font-semibold tracking-tighter leading-[1.1] mb-4">
+                        <span class="text-stone-900 block">Vibro</span>
+                        <span class="text-transparent-stroke-gold block py-0.5">Massagem</span>
+                    </h3>
+                    <p class="text-stone-600 text-[clamp(0.875rem,1.1vw,1rem)] leading-relaxed mb-4">
+                        Relaxe com vibrações suaves que aliviam tensões e preparam você para um sono profundo.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-3">
+                            <iconify-icon icon="solar:hand-stars-linear" class="text-gold-imperial text-lg mt-0.5 flex-shrink-0"></iconify-icon>
+                            <div>
+                                <span class="text-sm font-semibold text-stone-800 block">Tecidos Premium</span>
+                                <span class="text-xs text-stone-500">Toque macio e aconchegante com bordados personalizados.</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <iconify-icon icon="solar:ruler-linear" class="text-gold-imperial text-lg mt-0.5 flex-shrink-0"></iconify-icon>
+                            <div>
+                                <span class="text-sm font-semibold text-stone-800 block">Densidade Progressiva</span>
+                                <span class="text-xs text-stone-500">Suporte inteligente que se adapta ao seu corpo.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 3 Text — Right Side -->
+                <div class="poltrona-text poltrona-text-3 absolute top-1/2 -translate-y-1/2 right-[8%] w-[40%] max-w-[500px] z-20"
+                     style="opacity: 0;">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 border border-gold-imperial/30 rounded-full text-[10px] sm:text-xs font-mono uppercase text-gold-dark mb-5 backdrop-blur-sm bg-white/60">
+                        <iconify-icon icon="solar:health-linear" class="text-gold-imperial"></iconify-icon>
+                        03 / Bem-Estar
+                    </div>
+                    <h3 class="text-[clamp(1.8rem,3vw,2.8rem)] font-semibold tracking-tighter leading-[1.1] mb-4">
+                        <span class="text-stone-900 block">Tecnologias</span>
+                        <span class="text-transparent-stroke-gold block py-0.5">Integradas</span>
+                    </h3>
+                    <p class="text-stone-600 text-[clamp(0.875rem,1.1vw,1rem)] leading-relaxed mb-5">
+                        Infravermelho longo, turmalina negra e muito mais para melhorar sua saúde e bem-estar enquanto descansa.
+                    </p>
+                    <a href="https://wa.me/5511916164450" target="_blank" class="btn-beam-gold">
+                        <span class="conic-border"></span>
+                        <span class="shimmer-layer"></span>
+                        <span class="btn-inner">
+                            Conhecer a Poltrona
+                            <iconify-icon class="text-lg" icon="solar:arrow-right-linear"></iconify-icon>
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Progress Indicator -->
+                <div class="poltrona-progress absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex items-center gap-3">
+                    <div class="poltrona-progress-dot poltrona-dot-1 w-2 h-2 rounded-full bg-gold-imperial transition-all duration-500" style="opacity: 1; transform: scale(1.3);"></div>
+                    <div class="poltrona-progress-dot poltrona-dot-2 w-2 h-2 rounded-full bg-stone-300 transition-all duration-500"></div>
+                    <div class="poltrona-progress-dot poltrona-dot-3 w-2 h-2 rounded-full bg-stone-300 transition-all duration-500"></div>
+                    <span class="text-[10px] font-mono uppercase tracking-widest text-stone-400 ml-3 poltrona-progress-label">01 / 03</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ SECTION 4 — POLTRONA DE CINEMA STICKY SPLIT-SCREEN ═══ -->
+    <section id="cinema-showcase" class="relative z-20 bg-white border-t border-stone-200">
+
+        <!-- Section Header -->
+        <div class="cinema-section-header relative w-full py-20 lg:py-28 overflow-hidden">
+            <div class="absolute inset-0 pointer-events-none opacity-[0.03]"
+                 style="background-image: radial-gradient(circle, #C88B1D 1px, transparent 1px); background-size: 32px 32px;"></div>
+            <div class="relative z-10 text-center px-6">
+                <div class="cinema-header-el inline-flex items-center gap-2 px-4 py-1.5 border border-gold-imperial/30 rounded-full text-[10px] sm:text-xs font-mono uppercase text-gold-dark mb-6 backdrop-blur-sm bg-white/60">
+                    <iconify-icon icon="solar:tv-linear" class="text-gold-imperial"></iconify-icon>
+                    Linha Poltrona de Cinema
+                </div>
+                <h2 class="cinema-header-el text-[clamp(2.5rem,5vw,4.5rem)] font-semibold tracking-tighter leading-[1.05]">
+                    <span class="text-stone-900 block">Poltrona de</span>
+                    <span class="text-transparent-stroke-gold block py-1">Cinema</span>
+                    <span class="text-gold-imperial block">Tecnológica</span>
+                </h2>
+                <p class="cinema-header-el text-stone-500 text-base max-w-lg mx-auto mt-4 leading-relaxed">
+                    A experiência definitiva em home theater. 9 tecnologias integradas para conforto, saúde e bem-estar enquanto você assiste.
+                </p>
+            </div>
+        </div>
+
+        <!-- Sticky Split-Screen Container -->
+        <div class="cinema-scroll-container relative border-t border-stone-200">
+
+            <div class="flex flex-col lg:flex-row">
+
+                <!-- LEFT: Sticky Image Panel -->
+                <div class="cinema-sticky-panel w-full lg:w-1/2 lg:sticky lg:top-0 lg:h-[100dvh] relative overflow-hidden">
+
+                    <!-- Subtle BG -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-stone-50 via-white to-stone-100 pointer-events-none"></div>
+
+                    <!-- Gold ambient glow -->
+                    <div class="cinema-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] rounded-full pointer-events-none"
+                         style="background: radial-gradient(circle, rgba(200,139,29,0.07) 0%, rgba(200,139,29,0.02) 50%, transparent 70%); filter: blur(50px);"></div>
+
+                    <!-- Dot grid decoration -->
+                    <div class="absolute inset-0 pointer-events-none opacity-[0.025]"
+                         style="background-image: radial-gradient(circle, #C88B1D 1px, transparent 1px); background-size: 28px 28px;"></div>
+
+                    <!-- Image Container -->
+                    <div class="relative flex items-center justify-center h-full px-8 py-16 lg:py-0">
+                        <div class="cinema-image-wrapper relative w-full max-w-[480px]">
+                            <!-- Frontal Image -->
+                            <img src="assets/images/4-Section/1.webp"
+                                 alt="Poltrona de Cinema Frontal"
+                                 class="cinema-img-1 w-full h-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+                                 loading="lazy" decoding="async"
+                                 style="opacity: 1;">
+                            <!-- 45° Image -->
+                            <img src="assets/images/4-Section/2.webp"
+                                 alt="Poltrona de Cinema — Visão 45°"
+                                 class="cinema-img cinema-img-45 w-full h-auto absolute top-0 left-0 z-10"
+                                 loading="lazy" decoding="async"
+                                 style="opacity: 0;">
+
+                            <!-- Gold reflection line -->
+                            <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 w-[65%] h-[2px] rounded-full z-0"
+                                 style="background: linear-gradient(90deg, transparent, var(--gold-imperial), transparent); opacity: 0.35;"></div>
+                        </div>
+
+                        <!-- View indicator -->
+                        <div class="cinema-view-label absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-3 z-20">
+                            <div class="cinema-view-dot-1 w-2 h-2 rounded-full bg-gold-imperial transition-all duration-500" style="transform: scale(1.3);"></div>
+                            <div class="cinema-view-dot-2 w-2 h-2 rounded-full bg-stone-300 transition-all duration-500"></div>
+                            <span class="cinema-view-text text-[10px] font-mono uppercase tracking-widest text-stone-400 ml-2">Frontal</span>
+                        </div>
+                    </div>
+
+                    <!-- Gold glow line at bottom (mobile) / right edge (desktop) -->
+                    <div class="hidden lg:block absolute top-0 right-0 w-[1px] h-full overflow-hidden z-30">
+                        <div class="w-full h-[40%] absolute top-0 left-0"
+                             style="background: linear-gradient(180deg, transparent, var(--gold-imperial), transparent);
+                                    animation: glowLineVertical 4s ease-in-out infinite;"></div>
+                    </div>
+                </div>
+
+                <!-- RIGHT: Scrolling Content Panel -->
+                <div class="cinema-content-panel w-full lg:w-1/2">
+
+                    <!-- ── BLOCK 1: Rabatan ── -->
+                    <div class="cinema-block border-b border-stone-200 px-8 lg:px-12 xl:px-16 py-14 lg:py-20" data-cinema-view="frontal">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 border border-gold-imperial/30 rounded-full text-[10px] sm:text-xs font-mono uppercase text-gold-dark mb-5 bg-white/60">
+                            <iconify-icon icon="solar:layers-minimalistic-linear" class="text-gold-imperial"></iconify-icon>
+                            01 / Estrutura
+                        </div>
+                        <h3 class="text-[clamp(1.6rem,2.5vw,2.2rem)] font-semibold tracking-tighter leading-[1.1] mb-4">
+                            <span class="text-stone-900 block">Rabatan</span>
+                            <span class="text-transparent-stroke-gold block py-0.5">Hi-Tech</span>
+                        </h3>
+                        <p class="text-stone-600 text-[clamp(0.875rem,1vw,1rem)] leading-relaxed mb-5">
+                            Massagem de relaxamento tipo Doin integrada na estrutura para alívio de tensões diárias.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-gold-imperial text-lg mt-0.5 flex-shrink-0"></iconify-icon>
+                                <span class="text-sm text-stone-600">Regulação térmica inteligente</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-gold-imperial text-lg mt-0.5 flex-shrink-0"></iconify-icon>
+                                <span class="text-sm text-stone-600">Maior durabilidade e resistência estrutural</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-gold-imperial text-lg mt-0.5 flex-shrink-0"></iconify-icon>
+                                <span class="text-sm text-stone-600">Efeito antialérgico e antifúngico</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ── BLOCK 2: Tecido ── -->
+                    <div class="cinema-block border-b border-stone-200 px-8 lg:px-12 xl:px-16 py-14 lg:py-20" data-cinema-view="frontal">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 border border-gold-imperial/30 rounded-full text-[10px] sm:text-xs font-mono uppercase text-gold-dark mb-5 bg-white/60">
+                            <iconify-icon icon="solar:leaf-linear" class="text-gold-imperial"></iconify-icon>
+                            02 / Benefícios
+                        </div>
+                        <h3 class="text-[clamp(1.6rem,2.5vw,2.2rem)] font-semibold tracking-tighter leading-[1.1] mb-4">
+                            <span class="text-stone-900 block">Tecido</span>
+                            <span class="text-transparent-stroke-gold block py-0.5">Aloe Vera</span>
+                        </h3>
+                        <p class="text-stone-600 text-[clamp(0.875rem,1vw,1rem)] leading-relaxed mb-5">
+                            Hidrata a epiderme enquanto descansamos. Extremamente tecnológico, com toque suave de conforto absoluto.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-gold-imperial text-lg mt-0.5 flex-shrink-0"></iconify-icon>
+                                <span class="text-sm text-stone-600">Aloe Vera integrada na fibra do tecido</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-gold-imperial text-lg mt-0.5 flex-shrink-0"></iconify-icon>
+                                <span class="text-sm text-stone-600">Toque suave de conforto premium</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ── BLOCK 3: Tecnologia Magnética ── -->
+                    <div class="cinema-block border-b border-stone-200 px-8 lg:px-12 xl:px-16 py-14 lg:py-20" data-cinema-view="frontal">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 border border-gold-imperial/30 rounded-full text-[10px] sm:text-xs font-mono uppercase text-gold-dark mb-5 bg-white/60">
+                            <iconify-icon icon="solar:magnet-linear" class="text-gold-imperial"></iconify-icon>
+                            03 / Energia
+                        </div>
+                        <h3 class="text-[clamp(1.6rem,2.5vw,2.2rem)] font-semibold tracking-tighter leading-[1.1] mb-4">
+                            <span class="text-stone-900 block">Tecnologia</span>
+                            <span class="text-transparent-stroke-gold block py-0.5">Magnética</span>
+                        </h3>
+                        <p class="text-stone-600 text-[clamp(0.875rem,1vw,1rem)] leading-relaxed mb-5">
+                            Pastilhas magnéticas estrategicamente posicionadas para potencializar a recuperação durante o uso.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-gold-imperial text-lg mt-0.5 flex-shrink-0"></iconify-icon>
+                                <span class="text-sm text-stone-600">Melhora da circulação sanguínea</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-gold-imperial text-lg mt-0.5 flex-shrink-0"></iconify-icon>
+                                <span class="text-sm text-stone-600">Fortalecimento do sistema imunológico</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-gold-imperial text-lg mt-0.5 flex-shrink-0"></iconify-icon>
+                                <span class="text-sm text-stone-600">Regeneração celular acelerada</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ── BLOCK 4: Infravermelho Longo ── -->
+                    <div class="cinema-block border-b border-stone-200 px-8 lg:px-12 xl:px-16 py-14 lg:py-20" data-cinema-view="frontal">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 border border-gold-imperial/30 rounded-full text-[10px] sm:text-xs font-mono uppercase text-gold-dark mb-5 bg-white/60">
+                            <iconify-icon icon="solar:sun-linear" class="text-gold-imperial"></iconify-icon>
+                            04 / Energia
+                        </div>
+                        <h3 class="text-[clamp(1.6rem,2.5vw,2.2rem)] font-semibold tracking-tighter leading-[1.1] mb-4">
+                            <span class="text-stone-900 block">Infravermelho</span>
+                            <span class="text-transparent-stroke-gold block py-0.5">Longo</span>
+                        </h3>
+                        <p class="text-stone-600 text-[clamp(0.875rem,1vw,1rem)] leading-relaxed mb-5">
+                            Ondas bio-cerâmicas que atuam profundamente no organismo durante sessões de cinema.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-gold-imperial text-lg mt-0.5 flex-shrink-0"></iconify-icon>
+                                <span class="text-sm text-stone-600">Desintoxicação do organismo</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-gold-imperial text-lg mt-0.5 flex-shrink-0"></iconify-icon>
+                                <span class="text-sm text-stone-600">Alívio de dores e inflamações musculares</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-gold-imperial text-lg mt-0.5 flex-shrink-0"></iconify-icon>
+                                <span class="text-sm text-stone-600">Ajuda na produção de vitamina D sintetizada pela pele</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ═══ CROSSFADE MARKER — Changes to 45° view after this ═══ -->
+
+                    <!-- ── BLOCK 5: Turmalina Negra ── -->
+                    <div class="cinema-block border-b border-stone-200 px-8 lg:px-12 xl:px-16 py-14 lg:py-20" data-cinema-view="45">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 border border-gold-imperial/30 rounded-full text-[10px] sm:text-xs font-mono uppercase text-gold-dark mb-5 bg-white/60">
+                            <iconify-icon icon="solar:shield-star-linear" class="text-gold-imperial"></iconify-icon>
+                            05 / Energia
+                        </div>
+                        <h3 class="text-[clamp(1.6rem,2.5vw,2.2rem)] font-semibold tracking-tighter leading-[1.1] mb-4">
+                            <span class="text-stone-900 block">Turmalina</span>
+                            <span class="text-transparent-stroke-gold block py-0.5">Negra</span>
+                        </h3>
+                        <p class="text-stone-600 text-[clamp(0.875rem,1vw,1rem)] leading-relaxed mb-5">
+                            Mineral com propriedades energéticas para proteção e equilíbrio durante o relaxamento.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-gold-imperial text-lg mt-0.5 flex-shrink-0"></iconify-icon>
+                                <span class="text-sm text-stone-600">Proteção energética e harmonia ambiental</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-gold-imperial text-lg mt-0.5 flex-shrink-0"></iconify-icon>
+                                <span class="text-sm text-stone-600">Melhora da respiração e oxigenação</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-gold-imperial text-lg mt-0.5 flex-shrink-0"></iconify-icon>
+                                <span class="text-sm text-stone-600">Redução do estresse e ansiedade</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ── BLOCK 6: Densidade Progressiva ── -->
+                    <div class="cinema-block border-b border-stone-200 px-8 lg:px-12 xl:px-16 py-14 lg:py-20" data-cinema-view="45">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 border border-gold-imperial/30 rounded-full text-[10px] sm:text-xs font-mono uppercase text-gold-dark mb-5 bg-white/60">
+                            <iconify-icon icon="solar:ruler-linear" class="text-gold-imperial"></iconify-icon>
+                            06 / Estrutura
+                        </div>
+                        <h3 class="text-[clamp(1.6rem,2.5vw,2.2rem)] font-semibold tracking-tighter leading-[1.1] mb-4">
+                            <span class="text-stone-900 block">Densidade</span>
+                            <span class="text-transparent-stroke-gold block py-0.5">Progressiva</span>
+                        </h3>
+                        <p class="text-stone-600 text-[clamp(0.875rem,1vw,1rem)] leading-relaxed mb-5">
+                            Camadas inteligentes que reparam o desalinhamento da coluna, proporcionando aos órgãos um melhor funcionamento.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-gold-imperial text-lg mt-0.5 flex-shrink-0"></iconify-icon>
+                                <span class="text-sm text-stone-600">Ajuda significativamente quem sofre com escoliose, lordose, cifose e outros problemas de coluna</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-gold-imperial text-lg mt-0.5 flex-shrink-0"></iconify-icon>
+                                <span class="text-sm text-stone-600">Suporte postural de longa duração para todos os biotipos</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ── BLOCK 7: Massagem ── -->
+                    <div class="cinema-block border-b border-stone-200 px-8 lg:px-12 xl:px-16 py-14 lg:py-20" data-cinema-view="45">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 border border-gold-imperial/30 rounded-full text-[10px] sm:text-xs font-mono uppercase text-gold-dark mb-5 bg-white/60">
+                            <iconify-icon icon="solar:pulse-linear" class="text-gold-imperial"></iconify-icon>
+                            07 / Terapia
+                        </div>
+                        <h3 class="text-[clamp(1.6rem,2.5vw,2.2rem)] font-semibold tracking-tighter leading-[1.1] mb-4">
+                            <span class="text-stone-900 block">Vibro</span>
+                            <span class="text-transparent-stroke-gold block py-0.5">Massagem</span>
+                        </h3>
+                        <p class="text-stone-600 text-[clamp(0.875rem,1vw,1rem)] leading-relaxed mb-5">
+                            Ativa a produção de massa óssea, tonifica a musculatura e produz um relaxamento profundo.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-gold-imperial text-lg mt-0.5 flex-shrink-0"></iconify-icon>
+                                <span class="text-sm text-stone-600">Induz ao Sono REM, melhorando a qualidade do sono</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-gold-imperial text-lg mt-0.5 flex-shrink-0"></iconify-icon>
+                                <span class="text-sm text-stone-600">Tonificação muscular e fortalecimento ósseo</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ── BLOCK 8: Cromoterapia ── -->
+                    <div class="cinema-block border-b border-stone-200 px-8 lg:px-12 xl:px-16 py-14 lg:py-20" data-cinema-view="45">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 border border-gold-imperial/30 rounded-full text-[10px] sm:text-xs font-mono uppercase text-gold-dark mb-5 bg-white/60">
+                            <iconify-icon icon="solar:palette-linear" class="text-gold-imperial"></iconify-icon>
+                            08 / Terapia
+                        </div>
+                        <h3 class="text-[clamp(1.6rem,2.5vw,2.2rem)] font-semibold tracking-tighter leading-[1.1] mb-4">
+                            <span class="text-stone-900 block">Cromoterapia</span>
+                            <span class="text-transparent-stroke-gold block py-0.5">Holística</span>
+                        </h3>
+                        <p class="text-stone-600 text-[clamp(0.875rem,1vw,1rem)] leading-relaxed mb-5">
+                            Tratamento holístico através das cores com infravermelho curto, mantendo o terreno biológico ativo como o espectro solar no organismo.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-gold-imperial text-lg mt-0.5 flex-shrink-0"></iconify-icon>
+                                <span class="text-sm text-stone-600">Luzes terapêuticas com espectro calibrado</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-gold-imperial text-lg mt-0.5 flex-shrink-0"></iconify-icon>
+                                <span class="text-sm text-stone-600">Infravermelho curto para ativação biológica</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ── BLOCK 9: CTA Final ── -->
+                    <div class="cinema-block px-8 lg:px-12 xl:px-16 py-20 lg:py-28 bg-gradient-to-b from-white to-stone-50" data-cinema-view="45">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 border border-gold-imperial/30 rounded-full text-[10px] sm:text-xs font-mono uppercase text-gold-dark mb-5 bg-white/60">
+                            <iconify-icon icon="solar:star-fall-linear" class="text-gold-imperial"></iconify-icon>
+                            9 Tecnologias Integradas
+                        </div>
+                        <h3 class="text-[clamp(1.8rem,3vw,2.8rem)] font-semibold tracking-tighter leading-[1.1] mb-4">
+                            <span class="text-stone-900 block">A Experiência</span>
+                            <span class="text-transparent-stroke-gold block py-0.5">Completa</span>
+                        </h3>
+                        <p class="text-stone-600 text-[clamp(0.875rem,1vw,1rem)] leading-relaxed mb-8">
+                            Cada sessão é uma sessão terapêutica. Conforto, saúde e tecnologia em cada detalhe da sua poltrona de cinema.
+                        </p>
+                        <a href="https://wa.me/5511916164450" target="_blank" class="btn-beam-gold">
+                            <span class="conic-border"></span>
+                            <span class="shimmer-layer"></span>
+                            <span class="btn-inner">
+                                Adquirir a Poltrona
+                                <iconify-icon class="text-lg" icon="solar:cart-large-minimalistic-linear"></iconify-icon>
+                            </span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ SECTION 5 — BENTO GRID "LINHA RESIDENCIAL" ═══ -->
+    <section id="bento-residencial" class="relative z-20 bg-stone-950 border-t border-stone-800 overflow-hidden">
+
+        <!-- Ambient dot grid -->
+        <div class="absolute inset-0 pointer-events-none opacity-[0.04]"
+             style="background-image: radial-gradient(circle, #C88B1D 1px, transparent 1px); background-size: 30px 30px;"></div>
+
+        <!-- Section Header -->
+        <div class="bento-section-header relative w-full pt-20 pb-14 lg:pt-28 lg:pb-20 z-10">
+            <div class="text-center px-6">
+                <div class="bento-header-el inline-flex items-center gap-2 px-4 py-1.5 border border-gold-imperial/30 rounded-full text-[10px] sm:text-xs font-mono uppercase text-gold-imperial/80 mb-6 backdrop-blur-sm bg-white/5">
+                    <iconify-icon icon="solar:home-2-linear" class="text-gold-imperial"></iconify-icon>
+                    Linha Residencial KL Flex
+                </div>
+                <h2 class="bento-header-el text-[clamp(2.5rem,5vw,4.5rem)] font-semibold tracking-tighter leading-[1.05]">
+                    <span class="text-white block">Painel de</span>
+                    <span class="text-transparent-stroke-gold block py-1">Controle</span>
+                </h2>
+                <p class="bento-header-el text-stone-400 text-base max-w-lg mx-auto mt-4 leading-relaxed">
+                    Relaxamento e recuperação em cada peça. Conheça nossas linhas com tecnologia integrada para toda a sua casa.
+                </p>
+            </div>
+        </div>
+
+        <!-- Bento Grid -->
+        <div class="bento-grid relative z-10 px-4 sm:px-6 lg:px-10 pb-16 lg:pb-24 max-w-[1400px] mx-auto">
+
+            <!-- ── CARD 1: HERO — Sala Chesterfield (3col × 2row) ── -->
+            <div class="bento-card bento-card-hero" style="grid-column: span 3; grid-row: span 2;">
+                <img src="assets/images/5-Section/sala_chesterfield.webp"
+                     alt="Linha Residencial"
+                     class="w-full h-full object-cover opacity-15" loading="lazy" decoding="async">
+                <div class="bento-card-overlay">
+                    <div class="bento-card-badge">
+                        <iconify-icon icon="solar:sofa-2-linear" class="text-gold-imperial"></iconify-icon>
+                        Destaque
+                    </div>
+                    <h3 class="bento-card-title">Chesterfield<br><span class="text-gold-imperial">Tecnológico</span></h3>
+                    <p class="bento-card-desc">Conjunto completo com sofá e poltronas. Couro premium com 9 tecnologias terapêuticas.</p>
+                </div>
+                <!-- Glow accent -->
+                <div class="absolute bottom-0 left-0 w-full h-[2px]"
+                     style="background: linear-gradient(90deg, transparent, var(--gold-imperial), transparent); opacity: 0.4;"></div>
+            </div>
+
+            <!-- ── CARD 2: Stats / Brand Text (1col × 1row) ── -->
+            <div class="bento-card bento-card-text" style="grid-column: span 1; grid-row: span 1;">
+                <div class="absolute inset-0 bg-gradient-to-br from-stone-900 via-stone-900 to-stone-800"></div>
+                <div class="relative z-10 flex flex-col justify-between h-full p-6 lg:p-7">
+                    <div>
+                        <div class="bento-card-badge bg-gold-imperial/10 border-gold-imperial/20">
+                            <iconify-icon icon="solar:chart-square-linear" class="text-gold-imperial"></iconify-icon>
+                            Linha Completa
+                        </div>
+                        <div class="mt-5 space-y-4">
+                            <div>
+                                <span class="text-[clamp(2rem,3vw,3rem)] font-bold tracking-tighter text-white leading-none">4</span>
+                                <span class="text-sm text-stone-400 ml-1.5">Linhas</span>
+                            </div>
+                            <div>
+                                <span class="text-[clamp(2rem,3vw,3rem)] font-bold tracking-tighter text-gold-imperial leading-none">9</span>
+                                <span class="text-sm text-stone-400 ml-1.5">Tecnologias</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 mt-4">
+                        <div class="w-8 h-[1px] bg-gold-imperial/40"></div>
+                        <span class="text-[10px] font-mono uppercase tracking-widest text-stone-500">Relaxamento & Recuperação</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── CARD 2: Controle Bluetooth (1col × 1row) ── -->
+            <div class="bento-card group" style="grid-column: span 1; grid-row: span 1;">
+                <img src="assets/images/5-Section/1.webp" 
+                     alt="Controle Remoto Bluetooth" 
+                     class="w-[85%] h-auto absolute -bottom-10 -right-10 drop-shadow-2xl transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async">
+                <div class="bento-card-overlay justify-start">
+                    <div class="bento-card-badge">
+                        <iconify-icon icon="solar:gamepad-linear" class="text-gold-imperial"></iconify-icon>
+                        Bluetooth
+                    </div>
+                    <h3 class="bento-card-title-sm mt-3">Controle<br>Inteligente</h3>
+                </div>
+            </div>
+
+            <!-- ── CARD 3: Poltrona Cinema (1col × 1row) ── -->
+            <div class="bento-card group" style="grid-column: span 1; grid-row: span 1;">
+                <img src="assets/images/5-Section/33.webp" 
+                     alt="Design Chesterfield" 
+                     class="w-full h-[120%] object-cover absolute top-0 left-0 transition-transform duration-700 group-hover:scale-110" loading="lazy" decoding="async">
+                <div class="absolute inset-0 bg-gradient-to-t from-stone-900/80 via-stone-900/20 to-transparent pointer-events-none"></div>
+                <div class="bento-card-overlay bento-overlay-bottom">
+                    <div class="bento-card-badge">
+                        <iconify-icon icon="solar:tv-linear" class="text-gold-imperial"></iconify-icon>
+                        Cinema
+                    </div>
+                    <h3 class="bento-card-title-sm text-white">Poltrona<br>Cinema</h3>
+                </div>
+            </div>
+
+            <!-- ── CARD 4: Poltrona Reclinável (1col × 1row) ── -->
+            <div class="bento-card group" style="grid-column: span 1; grid-row: span 1;">
+                <img src="assets/images/5-Section/colchao_camadas.webp" 
+                     alt="Camadas Tecnológicas" 
+                     class="w-[80%] h-auto absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 drop-shadow-2xl transition-transform duration-700 group-hover:scale-110" loading="lazy" decoding="async">
+                <div class="bento-card-overlay bento-overlay-bottom">
+                    <div class="bento-card-badge">
+                        <iconify-icon icon="solar:armchair-linear" class="text-gold-imperial"></iconify-icon>
+                        Reclinável
+                    </div>
+                    <h3 class="bento-card-title-sm">9 Camadas<br><span class="text-gold-imperial">Integradas</span></h3>
+                </div>
+            </div>
+
+            <!-- ── CARD 5: Camadas Tecnológicas (1col × 1row) ── -->
+            <div class="bento-card group" style="grid-column: span 1; grid-row: span 1;">
+                <img src="assets/images/5-Section/colchao_recupere_azul.webp" 
+                     alt="Massagem Doin" 
+                     class="w-[90%] h-auto absolute -bottom-5 -right-5 drop-shadow-2xl transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async">
+                <div class="bento-card-overlay bento-overlay-bottom">
+                    <div class="bento-card-badge">
+                        <iconify-icon icon="solar:layers-minimalistic-linear" class="text-gold-imperial"></iconify-icon>
+                        Tecnologia
+                    </div>
+                    <h3 class="bento-card-title-sm">Massagem<br>Doin</h3>
+                </div>
+            </div>
+
+            <!-- ── CARD 6: Colchão Recupere Azul (2col × 1row) ── -->
+            <div class="bento-card group" style="grid-column: span 2; grid-row: span 1;">
+                <img src="assets/images/5-Section/colchao_recupere_angulo.webp" 
+                     alt="Infravermelho Longo" 
+                     class="w-full h-auto absolute bottom-0 left-0 drop-shadow-2xl transition-transform duration-700 group-hover:scale-110 group-hover:-translate-y-2" loading="lazy" decoding="async">
+                <div class="absolute inset-0 bg-gradient-to-r from-stone-900/60 to-transparent pointer-events-none"></div>
+                <div class="bento-card-overlay bento-overlay-bottom">
+                    <div class="bento-card-badge">
+                        <iconify-icon icon="solar:bed-linear" class="text-gold-imperial"></iconify-icon>
+                        Colchão
+                    </div>
+                    <h3 class="bento-card-title">Colchão <span class="text-gold-imperial">Recupere</span></h3>
+                    <p class="bento-card-desc">Recuperação celular acelerada enquanto você dorme. Infravermelho longo, magnético e vibromassagem integrados.</p>
+                </div>
+            </div>
+
+            <!-- ── CARD 7: Colchão Ângulo (1col × 1row) ── -->
+            <div class="bento-card group" style="grid-column: span 1; grid-row: span 1;">
+                <img src="assets/images/5-Section/colchao_recupere_frente.webp" 
+                     alt="Magnetoterapia" 
+                     class="w-[85%] h-auto absolute -right-4 top-1/2 -translate-y-1/2 drop-shadow-2xl transition-transform duration-700 group-hover:scale-110" loading="lazy" decoding="async">
+                <div class="bento-card-overlay bento-overlay-bottom">
+                    <div class="bento-card-badge">
+                        <iconify-icon icon="solar:moon-sleep-linear" class="text-gold-imperial"></iconify-icon>
+                        Ambiente
+                    </div>
+                    <h3 class="bento-card-title-sm">Recupere<br>Clássico</h3>
+                </div>
+            </div>
+
+            <!-- ── CARD 8: Colchão Frontal Wide (3col × 1row) ── -->
+            <div class="bento-card" style="grid-column: span 3; grid-row: span 1;">
+                <img src="assets/images/5-Section/colchao_recupere_frente.webp"
+                     alt="Colchão Recupere — Visão Frontal"
+                     class="bento-card-img" loading="lazy" decoding="async">
+                <div class="bento-card-overlay bento-overlay-bottom">
+                    <div class="bento-card-badge">
+                        <iconify-icon icon="solar:star-fall-linear" class="text-gold-imperial"></iconify-icon>
+                        Rhythm Music
+                    </div>
+                    <h3 class="bento-card-title">Recupere <span class="text-gold-imperial">Frontal</span></h3>
+                    <p class="bento-card-desc">Design minimalista com acabamento premium. Músicoterapia e vibromassagem embutidas na estrutura.</p>
+                </div>
+                <!-- Gold line accent -->
+                <div class="absolute bottom-0 left-0 w-full h-[2px]"
+                     style="background: linear-gradient(90deg, transparent, var(--gold-imperial), transparent); opacity: 0.4;"></div>
+            </div>
+
+        </div>
+
+        <!-- Bottom CTA -->
+        <div class="bento-cta relative z-10 text-center pb-20 lg:pb-28 px-6">
+            <a href="https://wa.me/5511916164450" target="_blank" class="btn-beam-gold">
+                <span class="conic-border"></span>
+                <span class="shimmer-layer"></span>
+                <span class="btn-inner">
+                    Ver Linha Residencial Completa
+                    <iconify-icon class="text-lg" icon="solar:arrow-right-linear"></iconify-icon>
+                </span>
+            </a>
+        </div>
+
+    </section>
+
+    <!-- ═══ SECTION 6 — CONTATO & REDES SOCIAIS ═══ -->
+    <section id="contato" class="relative z-20 bg-stone-900 border-t border-stone-800 py-20 lg:py-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+                
+                <!-- Left: Branding & Connect -->
+                <div>
+                    <h2 class="text-[clamp(2.5rem,4vw,3.5rem)] font-semibold tracking-tighter leading-[1.1] text-white mb-6">
+                        Dê o primeiro passo para o <span class="text-gold-imperial">seu bem-estar.</span>
+                    </h2>
+                    <p class="text-stone-400 text-lg mb-10 max-w-md">
+                        Nossos especialistas estão prontos para ajudar você a escolher a tecnologia perfeita para o seu corpo e sua casa.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <a href="https://www.instagram.com/klflexbr" target="_blank" class="flex items-center gap-3 px-6 py-3 rounded-full border border-stone-700 bg-stone-800/50 hover:bg-stone-800 hover:border-gold-imperial/50 text-white transition-all group">
+                            <iconify-icon icon="mdi:instagram" class="text-xl text-stone-400 group-hover:text-gold-imperial transition-colors"></iconify-icon>
+                            <span class="font-medium">@klflexbr</span>
+                        </a>
+                        <a href="https://bio.site/showroom" target="_blank" class="flex items-center gap-3 px-6 py-3 rounded-full border border-stone-700 bg-stone-800/50 hover:bg-stone-800 hover:border-gold-imperial/50 text-white transition-all group">
+                            <iconify-icon icon="solar:link-linear" class="text-xl text-stone-400 group-hover:text-gold-imperial transition-colors"></iconify-icon>
+                            <span class="font-medium">Site Oficial</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: Consultores (Cards) -->
+                <div class="space-y-4">
+                    <h3 class="text-xs font-mono uppercase tracking-widest text-stone-500 mb-6">Fale com um Especialista</h3>
+                    
+                    <!-- Whatsapp Kleber -->
+                    <a href="https://api.whatsapp.com/send/?phone=5519998246106&text=Ol%C3%A1+Kleber%21+Vi+a+p%C3%A1gina+da+KLFLEX+e+fiquei+muito+interessado%28a%29+nos+colch%C3%B5es+%E2%80%94+tecnologia+para+sono%2C+postura+e+sa%C3%BAde+de+verdade%21+Poderia+me+contar+mais+sobre+os+modelos+e+como+funciona%3F&type=phone_number&app_absent=0" target="_blank" 
+                       class="block p-6 rounded-2xl bg-stone-800/30 border border-stone-700/50 hover:bg-stone-800 hover:border-gold-imperial/40 transition-all group relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-r from-gold-imperial/0 via-gold-imperial/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <div class="flex items-center justify-between relative z-10">
+                            <div class="flex items-center gap-4">
+                                <img src="assets/images/kleber.webp" alt="Kleber" class="w-12 h-12 rounded-full object-cover bg-stone-700">
+                                <div>
+                                    <h4 class="text-white font-semibold text-lg">Kleber</h4>
+                                    <p class="text-stone-400 text-sm">Consultor Especialista</p>
+                                </div>
+                            </div>
+                            <div class="w-10 h-10 rounded-full border border-stone-600 flex items-center justify-center text-stone-400 group-hover:bg-gold-imperial group-hover:text-white group-hover:border-gold-imperial transition-all">
+                                <iconify-icon icon="mdi:whatsapp" class="text-xl"></iconify-icon>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Whatsapp Luciana -->
+                    <a href="https://api.whatsapp.com/send/?phone=5511985569992&text=Ol%C3%A1+Luciana%21+Vi+a+p%C3%A1gina+da+KLFLEX+e+fiquei+muito+interessado%28a%29+nos+colch%C3%B5es+%E2%80%94+tecnologia+para+sono%2C+postura+e+sa%C3%BAde+de+verdade%21+Poderia+me+contar+mais+sobre+os+modelos+e+como+funciona%3F&type=phone_number&app_absent=0" target="_blank" 
+                       class="block p-6 rounded-2xl bg-stone-800/30 border border-stone-700/50 hover:bg-stone-800 hover:border-gold-imperial/40 transition-all group relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-r from-gold-imperial/0 via-gold-imperial/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <div class="flex items-center justify-between relative z-10">
+                            <div class="flex items-center gap-4">
+                                <img src="assets/images/luciana.webp" alt="Luciana" class="w-12 h-12 rounded-full object-cover bg-stone-700">
+                                <div>
+                                    <h4 class="text-white font-semibold text-lg">Luciana</h4>
+                                    <p class="text-stone-400 text-sm">Consultora Especialista</p>
+                                </div>
+                            </div>
+                            <div class="w-10 h-10 rounded-full border border-stone-600 flex items-center justify-center text-stone-400 group-hover:bg-gold-imperial group-hover:text-white group-hover:border-gold-imperial transition-all">
+                                <iconify-icon icon="mdi:whatsapp" class="text-xl"></iconify-icon>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+            
+            <!-- Footer bottom -->
+            <div class="mt-24 pt-8 border-t border-stone-800 flex flex-col md:flex-row justify-between items-center gap-4">
+                <img src="assets/images/LogoKLFlex.webp" alt="KLFLEX Logo" class="h-[50px] w-auto opacity-70 grayscale">
+                <p class="text-stone-500 text-sm">© 2026 KLFLEX. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
